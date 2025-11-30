@@ -40,12 +40,24 @@ def review_flashcards():
         input("Press Enter to reveal answer...")
         console.print(f"👉 {card['a']}\n")
 
+def clear_flashcards():
+    """Deletes ALL flashcards after confirmation."""
+    console.print("\n⚠️ [bold red]WARNING:[/bold red] This will delete ALL flashcards permanently.")
+    confirm = console.input("Type 'DELETE' to confirm: ")
+
+    if confirm == "DELETE":
+        save_flashcards([])  # overwrite with empty list
+        console.print("[green]✔ All flashcards cleared.[/green]\n")
+    else:
+        console.print("[yellow]Action cancelled.[/yellow]\n")
+
 def flashcard_menu():
     while True:
         console.print("\n------ FLASHCARDS ------")
         console.print("1. Create Flashcard")
         console.print("2. Review Flashcards")
-        console.print("3. Back")
+        console.print("3. Clear All Flashcards")
+        console.print("4. Back")
 
         choice = console.input("\nChoose: ")
 
@@ -54,6 +66,8 @@ def flashcard_menu():
         elif choice == "2":
             review_flashcards()
         elif choice == "3":
+            clear_flashcards()
+        elif choice == "4":
             break
         else:
             console.print("[red]❌ Invalid choice.[/red]")
